@@ -1,0 +1,31 @@
+{
+  "name": "PWA-SmartCommute",
+  "version": "0.0.1",
+  "private": true,
+  "description": "For logging Smart Commute Units",
+  "main": "bin/server",
+  "keywords": [
+    "spa",
+    "pwa"
+  ],
+  "author": {
+    "name": "Bates, Howard",
+    "email": "hbates@northmen.org"
+  },
+  "scripts": {
+    "start": "node bin/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/backpacker777/PWA-SmartCommute"
+  },
+  "engines": {
+    "node": ">= 7.8.0"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "latest",
+    "formidable": "latest",
+    "nedb": "latest"
+  }
+}

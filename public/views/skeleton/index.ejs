@@ -1,0 +1,55 @@
+<% include public/views/header.ejs %>
+
+<div class="container" id="masthead">
+    <div class="row">
+        <div class="twelve columns">
+            <h2 class="text-center">Smart Commute Log</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="twelve columns">
+            <img src="public/images/SmartCommuteLogoSmall.png" class=" img-center">
+        </div>
+    </div>
+</div>
+<div class="container" id="top">
+    <form>
+        <div class="row grey-box">
+            <div class="twelve columns"><h4 class="vertical-center">Sign In:</h4></div>
+        </div>
+<!--        <div class="row">
+            <div class="twelve columns text-center">
+                <img src="public/images/fb.png" width="30px" height="30px" class="vertical-center"> Sign in with Facebook
+                <p>- or -</p>
+            </div>
+        </div>-->
+        <br>
+        <div class="row">
+            <div class="twelve columns">
+                <img src="public/images/fbloginSm.png" class="img-center">
+                <!--<input class="button fbLogin" value="&nbsp;">-->
+            </div>
+        </div>
+        <div class="row">
+            <div class="five columns">
+                <label for="email">Your email:</label>
+                <input class="u-full-width" type="email" placeholder="test@mailbox.com" id="email">
+            </div>
+            <div class="five columns">
+                <label for="password">Password:</label>
+                <input class="u-full-width" type="password" placeholder="Password" id="password">
+            </div>
+            <div class="two columns">
+                <label for="continue">&nbsp</label>
+                <input class="button-primary" type="submit" value="Continue" id="continue">
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="two-half columns">
+                <input class="button" type="submit" value="No account? Create!">
+            </div>
+        </div>
+    </form>
+</div>
+
+<% include public/views/footer.ejs %>

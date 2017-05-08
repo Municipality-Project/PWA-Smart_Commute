@@ -1,0 +1,55 @@
+<% include public/views/header.ejs %>
+
+<div class="container" id="masthead">
+	<div class="row">
+		<div class="six columns offset-by-three x-thin">
+			<h3 class="text-center">Smart Commute Log</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="two-half columns">
+			<img src="public/images/SmartCommuteLogoSmall.png" class=" img-center">
+		</div>
+	</div>
+</div>
+<div class="container" id="login">
+	<form id="loginData">
+		<br>
+		<div class="row">
+			<div class="twelve columns text-center" id="fb">
+				<div id="fb-root"></div>
+				<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false"
+				     data-auto-logout-link="false"></div>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="four columns offset-by-four">
+				<label for="email">Your email:</label>
+				<input class="u-full-width" type="email" placeholder="username@mailserver.com" name="getEmail"
+				       id="getEmail">
+			</div>
+		</div>
+		<div class="row">
+			<div class="four columns offset-by-four">
+				<label for="password">Password:</label>
+				<input class="u-full-width" type="password" placeholder="Password" name="password" id="password">
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="four columns offset-by-four">
+				<input class="button-primary" type="button" value="Continue" name="continue" id="continue">
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="four columns offset-by-four">
+				<input class="button" type="button" value="No account? Create!" name="creator" id="creator">
+			</div>
+		</div>
+	</form>
+</div>
+
+<% include public/views/log.ejs %>
+<% include public/views/create.ejs %>
+<% include public/views/result.ejs %>
+<% include public/views/footer.ejs %>

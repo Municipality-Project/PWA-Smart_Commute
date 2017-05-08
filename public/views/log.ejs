@@ -1,0 +1,30 @@
+<div class="container" id="log">
+    <h4 id="name"></h4>
+    <form id="logData">
+        <div class="row">
+            <div class="six columns offset-by-three">
+                <span class="u-pull-left"><strong>Date:</strong></span>
+                <input type="date" name="tripDate" id="tripDate" class="u-pull-right">
+            </div>
+        </div>
+        <div class="row">
+            <div class="six columns offset-by-three">
+                <span class="u-pull-left"><strong>Trips:</strong></span>
+                <input type="number" name="tripNums" id="tripNums" size="2" maxlength="3" class="u-pull-right">
+            </div>
+        </div>
+        <div class="row">
+            <div class="six columns offset-by-three">
+                <span class="u-pull-left"><strong>Mileage:</strong></span>
+                <input type="number" name="tripMileage" id="tripMileage" size="2" maxlength="4" class="u-pull-right">
+            </div>
+        </div>
+        <div class="row">
+            <label>Commute Notes:</label>
+            <textarea form="logData" placeholder="Enter data here" rows="4" name="commuteNotes" id="commuteNotes" autofocus></textarea>
+        </div>
+        <div class="row text-center">
+            <input class="button-primary" type="button" value="Enter Log" name="enterLog" id="enterLog">
+        </div>
+    </form>
+</div>
