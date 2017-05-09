@@ -20,7 +20,7 @@
     "url": "https://github.com/backpacker777/PWA-SmartCommute"
   },
   "engines": {
-    "node": ">= 7.8.0"
+    "node": ">= 7.9.0"
   },
   "license": "MIT",
   "dependencies": {
