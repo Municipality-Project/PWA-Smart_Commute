@@ -37,9 +37,9 @@ class EventHandler {
      handleFB() {
           window.fbAsyncInit = function() {
                FB.init({
-                    appId      : '1207997845975333',
+                    appId      : '1365458466881593',
                     xfbml      : true,
-                    version    : 'v2.9'
+                    version    : 'v2.8'
                });
                FB.AppEvents.logPageView();
           };
