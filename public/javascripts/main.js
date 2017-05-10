@@ -37,14 +37,14 @@ class EventHandler {
      handleFB() {
           window.fbAsyncInit = function() {
                FB.init({
-                    appId      : '1365458466881593',
+                    appId      : '1207997845975333',
                     xfbml      : true,
-                    version    : 'v2.8'
+                    version    : 'v2.9'
                });
                FB.AppEvents.logPageView();
           };
           (function(d, s, id){
-               var js, fjs = d.getElementsByTagName(s)[0];
+               let js, fjs = d.getElementsByTagName(s)[0];
                if (d.getElementById(id)) {return;}
                js = d.createElement(s); js.id = id;
                js.src = "//connect.facebook.net/en_US/sdk.js";
