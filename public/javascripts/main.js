@@ -102,7 +102,7 @@ class EventHandler {
                     if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(document.getElementById('createEmail').value)) {
                          if (/^[a-z0-9]{1,20}$/i.test(document.getElementById('createPassword').value) && document.getElementById('createPassword').value === document.getElementById('confirmPassword').value) {
                               if (/^[a-z]{1,30}$/i.test(document.getElementById('createFirstName').value) && /^[a-z]{1,30}$/i.test(document.getElementById('createLastName').value)) {
-                                   let data = new FormData(document.querySelector('createAccount')); //problem stems froms here, #createAccount
+                                   let data = new FormData(document.querySelector('#createAccount')); //problem stems froms here, #createAccount
                                    this.performAjax('XMLHttpRequest1', data, (responseText) => {
                                         document.getElementById('createAccount').reset();
                                         if (responseText !== 'false') {
