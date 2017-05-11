@@ -4,17 +4,17 @@
 
 class main {
      constructor() {
-          main.loadServiceWorker();
+          // main.loadServiceWorker();
           main.prepApp();
           new EventHandler();
           this.user = [];
      }
 
-     static loadServiceWorker() {
+    /* static loadServiceWorker() {
           if ('serviceWorker' in navigator) {
                navigator.serviceWorker.register('/ServiceWorker.js');
           }
-     }
+     }*/
 
      static prepApp() {
           document.getElementById('log').style.display = 'none';
@@ -35,21 +35,23 @@ class EventHandler {
      }
 
      handleFB() {
-          window.fbAsyncInit = function() {
-               FB.init({
-                    appId      : '1365458466881593',
-                    xfbml      : true,
-                    version    : 'v2.8'
-               });
-               FB.AppEvents.logPageView();
-          };
-          (function(d, s, id){
-               let js, fjs = d.getElementsByTagName(s)[0];
-               if (d.getElementById(id)) {return;}
-               js = d.createElement(s); js.id = id;
-               js.src = "//connect.facebook.net/en_US/sdk.js";
-               fjs.parentNode.insertBefore(js, fjs);
-          }(document, 'script', 'facebook-jssdk'));
+         window.fbAsyncInit = function() {
+             FB.init({
+                 appId      : '1207997845975333',
+                 cookie     : true,
+                 xfbml      : true,
+                 version    : 'v2.8'
+             });
+             FB.AppEvents.logPageView();
+         };
+
+         (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "//connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
           document.getElementById('fb').addEventListener('click', () => {
                document.getElementById('create').style.display = 'none';
                document.getElementById('login').style.display = 'none';
@@ -102,7 +104,7 @@ class EventHandler {
                     if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(document.getElementById('createEmail').value)) {
                          if (/^[a-z0-9]{1,20}$/i.test(document.getElementById('createPassword').value) && document.getElementById('createPassword').value === document.getElementById('confirmPassword').value) {
                               if (/^[a-z]{1,30}$/i.test(document.getElementById('createFirstName').value) && /^[a-z]{1,30}$/i.test(document.getElementById('createLastName').value)) {
-                                   let data = new FormData(document.querySelector('#createAccount')); //problem stems froms here, #createAccount
+                                   let data = new FormData(document.querySelector('#createAccount'));
                                    this.performAjax('XMLHttpRequest1', data, (responseText) => {
                                         document.getElementById('createAccount').reset();
                                         if (responseText !== 'false') {
