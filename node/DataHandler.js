@@ -31,7 +31,7 @@ class DataHandler {
                }
                if (whichAjax === 1) {
                     for (let i = 0; i < finalData.length; i++) {
-                         // console.log(`${data.createEmail} :: ${finalData[i][0]}`);
+                         console.log(`${data.createEmail} :: ${finalData[i][0]}`);
                          if (data.createEmail === finalData[i][0]) {
                               console.log(`returning error: user exists`);
                               user = 'false';
@@ -55,19 +55,12 @@ class DataHandler {
                     callback(user);
                } else {
                     for (let i = 0; i < finalData.length; i++) {
-                         if (data === finalData[i][0]) {
-                              found = true;
-                              DataHandler.findRecords(finalData[i][0], (data2) => {
-                                   if (data2 !== false) {
-                                        user = data2;
-                                   } else {
-                                        user = JSON.stringify({
-                                             'email': finalData[i][0],
-                                             'password': finalData[i][1],
-                                             'lastName': finalData[i][2],
-                                             'firstName': finalData[i][3]
-                                        });
-                                   }
+                         if (data[0] === finalData[i][0]) {
+                              user = JSON.stringify({
+                                   'email': finalData[i][0],
+                                   'password': finalData[i][1],
+                                   'lastName': finalData[i][2],
+                                   'firstName': finalData[i][3]
                               });
                               break;
                          } else {
@@ -92,6 +85,19 @@ class DataHandler {
      static addData(data) {
           console.log(`Adding new user....`);
           DB.insert(data);
+     }
+
+     static getAdminData() {
+          console.log('called?');
+          const COLUMNS = 4;
+          let tempArray, finalData = [];
+          let found = false;
+          tempArray = file.split(/\r?\n/); //remove newlines
+          for (let i = 0; i < tempArray.length; i++) {
+               finalData[i] = tempArray[i].split(/,/).slice(0, COLUMNS);
+          }
+          console.log(finalData);
+          return finalData;
      }
 
      static updateData(data) {

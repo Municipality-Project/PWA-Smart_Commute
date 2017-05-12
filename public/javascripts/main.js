@@ -20,6 +20,8 @@ class main {
           document.getElementById('log').style.display = 'none';
           document.getElementById('create').style.display = 'none';
           document.getElementById('result').style.display = 'none';
+          document.getElementById('adminButton').style.display = 'none';
+          document.getElementById('adminAccess').style.display = 'none';
           document.getElementById('login').style.display = 'block';
      }
 }
@@ -32,6 +34,7 @@ class EventHandler {
           this.handleSubmit();
           this.handleEnterLog();
           this.handleNewLog();
+          this.handleAdminPrivileges();
      }
 
      handleFB() {
@@ -70,6 +73,7 @@ class EventHandler {
                               alert('You must provide your proper email address to continue.');
                          } else {
                               this.user = JSON.parse(response);
+                              console.log(response);
                               document.getElementById('create').style.display = 'none';
                               document.getElementById('login').style.display = 'none';
                               document.getElementById('result').style.display = 'none';
@@ -78,6 +82,9 @@ class EventHandler {
                                    document.getElementById('name').innerHTML = `${this.user.firstName} ${this.user.lastName}`;
                               } else {
                                    document.getElementById('name').innerHTML = `${this.user[0].firstName} ${this.user[0].lastName}`;
+                              }
+                              if (this.user.email == 'joe@latitude45.com') {
+                                  document.getElementById('adminButton').style.display = 'block';
                               }
                          }
                     });
@@ -165,6 +172,18 @@ class EventHandler {
                document.getElementById('log').style.display = 'block';
           });
      }
+
+    handleAdminPrivileges() {
+        document.getElementById('adminButton').addEventListener('click', () => {
+            document.getElementById('log').style.display = 'none';
+            document.getElementById('adminAccess').style.display = 'block';
+            this.performAjax('XMLHttpRequest3', '', (response) => {
+                for (let i = 0; i < response.length; i++) {
+                    document.getElementById('adminAccess').innerHTML = document.getElementById('adminAccess').innerHTML + response[i][0] + ' -- ' + response[i][1] + ' -- ' + response[i][2] + ' -- ' + response[i][3] + '<br>';
+                }
+            });
+        });
+    }
 
      performAjax(requestNum, sendToNode, callback) {
           let bustCache = '?' + new Date().getTime();
