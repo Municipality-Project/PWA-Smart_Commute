@@ -22,6 +22,7 @@ class main {
           document.getElementById('result').style.display = 'none';
           document.getElementById('adminButton').style.display = 'none';
           document.getElementById('adminAccess').style.display = 'none';
+          document.getElementById('returnAdmin').style.display = 'none';
           document.getElementById('login').style.display = 'block';
      }
 }
@@ -35,6 +36,7 @@ class EventHandler {
           this.handleEnterLog();
           this.handleNewLog();
           this.handleAdminPrivileges();
+          this.hideAdminPage();
      }
 
      handleFB() {
@@ -73,7 +75,6 @@ class EventHandler {
                               alert('You must provide your proper email address to continue.');
                          } else {
                               this.user = JSON.parse(response);
-                              console.log(response);
                               document.getElementById('create').style.display = 'none';
                               document.getElementById('login').style.display = 'none';
                               document.getElementById('result').style.display = 'none';
@@ -178,12 +179,32 @@ class EventHandler {
             document.getElementById('log').style.display = 'none';
             document.getElementById('adminAccess').style.display = 'block';
             this.performAjax('XMLHttpRequest3', '', (response) => {
-                for (let i = 0; i < response.length; i++) {
-                    document.getElementById('adminAccess').innerHTML = document.getElementById('adminAccess').innerHTML + response[i][0] + ' -- ' + response[i][1] + ' -- ' + response[i][2] + ' -- ' + response[i][3] + '<br>';
-                }
+                 response = JSON.parse(response);
+                 console.log(response);
+                 let htmlText = '<br>';
+                 for (let i = 0; i < response.length; i++) {
+                      htmlText += '<br>';
+                      htmlText += 'Email: ' + response[i].email + '--';
+                      htmlText += '# of Trips: ' + response[i].tripNums + '--';
+                      htmlText += '# of Miles: ' + response[i].tripMileage + '--';
+                      htmlText += 'Trip Date: ' + response[i].tripDate + '--';
+                      htmlText += 'Notes: ' + response[i].commuteNotes + '<br>';
+                 }
+                 document.getElementById('adminAccess').innerHTML = htmlText;
             });
+             document.getElementById('adminButton').style.display = 'none';
+             document.getElementById('returnAdmin').style.display = 'block';
         });
     }
+
+     hideAdminPage() {
+          document.getElementById('returnAdmin').addEventListener('click', () => {
+               document.getElementById('log').style.display = 'block';
+               document.getElementById('adminButton').style.display = 'block';
+               document.getElementById('adminAccess').style.display = 'none';
+               document.getElementById('returnAdmin').style.display = 'none';
+          });
+     }
 
      performAjax(requestNum, sendToNode, callback) {
           let bustCache = '?' + new Date().getTime();

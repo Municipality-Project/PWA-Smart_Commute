@@ -84,11 +84,10 @@ class app {
                               response.end(formData);
                          });
                     } else if (request.headers['x-requested-with'] === 'XMLHttpRequest3') {
-
-                         request.on('data', (data) => {
-                              this.user = DATA_HANDLER.getAdminData(data.toString('utf8'));
+                         DATA_HANDLER.getAdminData((returned) => {
+                              console.log(returned);
                               response.writeHead(200, {'content-type': 'application/json'});
-                              response.end(JSON.stringify(this.user));
+                              response.end(JSON.stringify(returned));
                          });
                     } else {
                          response.writeHead(405, "Method not supported", {'Content-Type': 'text/html'});

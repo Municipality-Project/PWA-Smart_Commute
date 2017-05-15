@@ -87,17 +87,14 @@ class DataHandler {
           DB.insert(data);
      }
 
-     static getAdminData() {
-          console.log('called?');
-          const COLUMNS = 4;
-          let tempArray, finalData = [];
-          let found = false;
-          tempArray = file.split(/\r?\n/); //remove newlines
-          for (let i = 0; i < tempArray.length; i++) {
-               finalData[i] = tempArray[i].split(/,/).slice(0, COLUMNS);
-          }
-          console.log(finalData);
-          return finalData;
+     static getAdminData(callback) {
+          DB.find({}, (err, docs) => {
+               if (docs.length > 0) {
+                    callback(docs);
+               } else {
+                    callback(false);
+               }
+          });
      }
 
      static updateData(data) {
