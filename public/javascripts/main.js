@@ -68,7 +68,7 @@ class EventHandler {
         //         console.log(request.responseText);
         //     };
         // });
-        document.getElementById("fb").addEventListener('click', () => {
+        document.getElementById("fb-login-button").addEventListener('click', () => {
             FB.getLoginStatus(function(response) {
                 let request = new XMLHttpRequest();
                 request.open("POST", response.authResponse.userID, true);
