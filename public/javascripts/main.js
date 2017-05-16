@@ -60,14 +60,14 @@ class EventHandler {
             js.src = "//connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
-        FB.Event.subscribe('auth.login', (response) => {
-            let request = new XMLHttpRequest();
-            request.open("POST", response.authResponse.userID, true);
-            request.send();
-            request.onload = function () {
-                console.log(request.responseText);
-            };
-        });
+        // FB.Event.subscribe('auth.login', (response) => {
+        //     let request = new XMLHttpRequest();
+        //     request.open("POST", response.authResponse.userID, true);
+        //     request.send();
+        //     request.onload = function () {
+        //         console.log(request.responseText);
+        //     };
+        // });
         document.getElementById("fb-login-button").addEventListener('click', () => {
             FB.getLoginStatus(function(response) {
                 let request = new XMLHttpRequest();
