@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="83372dd1-6e80-4fe0-a128-60078c3d3b8d" name="Default" comment="Finished admin privileges.">
+    <list default="true" id="83372dd1-6e80-4fe0-a128-60078c3d3b8d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/header.ejs" afterPath="$PROJECT_DIR$/public/views/header.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/index.ejs" afterPath="$PROJECT_DIR$/public/views/index.ejs" />
@@ -33,21 +33,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.ejs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/views/index.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="200" selection-start-line="19" selection-start-column="200" selection-end-line="19" selection-end-column="200" />
+            <state relative-caret-position="255">
+              <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header.ejs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="header.ejs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/views/header.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="503">
-              <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+            <state relative-caret-position="270">
+              <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -151,8 +151,8 @@
         <option value="$PROJECT_DIR$/node/DataHandler.js" />
         <option value="$PROJECT_DIR$/public/views/adminpage.ejs" />
         <option value="$PROJECT_DIR$/public/javascripts/main.js" />
-        <option value="$PROJECT_DIR$/public/views/header.ejs" />
         <option value="$PROJECT_DIR$/public/views/index.ejs" />
+        <option value="$PROJECT_DIR$/public/views/header.ejs" />
       </list>
     </option>
   </component>
@@ -806,7 +806,7 @@
       <workItem from="1494526614626" duration="3430000" />
       <workItem from="1494613790783" duration="5281000" />
       <workItem from="1494872100686" duration="3734000" />
-      <workItem from="1495045018461" duration="709000" />
+      <workItem from="1495045018461" duration="795000" />
     </task>
     <task id="LOCAL-00001" summary="Working on getting AJAX request done.">
       <created>1494619085478</created>
@@ -829,11 +829,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495045048912</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Testing Oauth stuff.">
+      <created>1495045741319</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1495045741319</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15640000" />
+    <option name="totallyTimeSpent" value="15726000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -887,7 +894,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Working on getting AJAX request done." />
     <MESSAGE value="Finished admin privileges." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished admin privileges." />
+    <MESSAGE value="Testing Oauth stuff." />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing Oauth stuff." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1196,18 +1204,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/header.ejs">
+    <entry file="file://$PROJECT_DIR$/public/views/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+        <state relative-caret-position="255">
+          <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/index.ejs">
+    <entry file="file://$PROJECT_DIR$/public/views/header.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="200" selection-start-line="19" selection-start-column="200" selection-end-line="19" selection-end-column="200" />
+        <state relative-caret-position="270">
+          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
           <folding />
         </state>
       </provider>
