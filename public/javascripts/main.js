@@ -69,7 +69,7 @@ class EventHandler {
         //     };
         // });
         document.getElementById("fb-login-button").addEventListener('click', () => {
-            FB.getLoginStatus(function(response) {
+            FB.getLoginStatus(function (response) {
                 let request = new XMLHttpRequest();
                 request.open("POST", response.authResponse.userID, true);
                 request.send();
@@ -82,33 +82,31 @@ class EventHandler {
 
     handleContinue() {
         document.getElementById('continue').addEventListener('click', () => {
-            if {
-                if (document.getElementById('getEmail').value === '' || !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(document.getElementById('getEmail').value)) {
-                    alert(`Incorrect email address. Please try again.`)
-                } else {
-                    this.performAjax('XMLHttpRequest0', JSON.stringify([document.getElementById('getEmail').value, document.getElementById('password').value]), (response) => {
-                        if (response === 'false') {
-                            alert('You must provide your proper email address to continue.');
+            if (document.getElementById('getEmail').value === '' || !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(document.getElementById('getEmail').value)) {
+                alert(`Incorrect email address. Please try again.`)
+            } else {
+                this.performAjax('XMLHttpRequest0', JSON.stringify([document.getElementById('getEmail').value, document.getElementById('password').value]), (response) => {
+                    if (response === 'false') {
+                        alert('You must provide your proper email address to continue.');
+                    } else {
+                        this.user = JSON.parse(response);
+                        document.getElementById('create').style.display = 'none';
+                        document.getElementById('login').style.display = 'none';
+                        document.getElementById('result').style.display = 'none';
+                        document.getElementById('log').style.display = 'block';
+                        if (Object.prototype.toString.call(this.user) === '[object Object]') {
+                            document.getElementById('name').innerHTML = `${this.user.firstName} ${this.user.lastName}`;
                         } else {
-                            this.user = JSON.parse(response);
-                            document.getElementById('create').style.display = 'none';
-                            document.getElementById('login').style.display = 'none';
-                            document.getElementById('result').style.display = 'none';
-                            document.getElementById('log').style.display = 'block';
-                            if (Object.prototype.toString.call(this.user) === '[object Object]') {
-                                document.getElementById('name').innerHTML = `${this.user.firstName} ${this.user.lastName}`;
-                            } else {
-                                document.getElementById('name').innerHTML = `${this.user[0].firstName} ${this.user[0].lastName}`;
-                            }
-                            if (this.user.email == 'joe@latitude45.com') {
-                                document.getElementById('adminButton').style.display = 'block';
-                            }
+                            document.getElementById('name').innerHTML = `${this.user[0].firstName} ${this.user[0].lastName}`;
                         }
-                    });
-                }
+                        if (this.user.email == 'joe@latitude45.com') {
+                            document.getElementById('adminButton').style.display = 'block';
+                        }
+                    }
+                });
             }
 
-            FB.getLoginStatus(function(response) {
+            FB.getLoginStatus(function (response) {
                 statusChangeCallback(response);
                 if (response.status === 'connected') {
                     this.user = JSON.parse(response);
