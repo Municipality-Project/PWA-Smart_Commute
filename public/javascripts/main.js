@@ -91,7 +91,6 @@ class EventHandler {
                     }
                 });
             }
-        }
         };
 
         (function (d, s, id) {
