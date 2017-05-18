@@ -108,7 +108,7 @@ class EventHandler {
                         });
                     }
                 } else {
-                    FB.getLoginStatus(function (loginStatus) {
+                    FB.getLoginStatus((loginStatus) => {
                             if (loginStatus.status === 'connected') {
                                 this.performAjax('XMLHttpRequest0', JSON.stringify([loginStatus.authResponse.userID,
                                 '']), (response) => {
@@ -262,7 +262,7 @@ class EventHandler {
         XHR.send(sendToNode);
         XHR.onload = () => {
             if (XHR.readyState == 4 && XHR.status == 200 && callback) {
-                return callback(XHR.responseText);
+                callback(XHR.responseText);
             }
         };
     }
