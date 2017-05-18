@@ -48,8 +48,42 @@ class EventHandler {
                 version: 'v2.8'
             });
             FB.AppEvents.logPageView();
-            if (document.getElementById('getEmail').value !== '') {
-                document.getElementById('continue').addEventListener('click', () => {
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        // FB.Event.subscribe('auth.login', (response) => {
+        //     let request = new XMLHttpRequest();
+        //     request.open("POST", response.authResponse.userID, true);
+        //     request.send();
+        //     request.onload = function () {
+        //         console.log(request.responseText);
+        //     };
+        // });
+        // document.getElementById("fb-login-button").addEventListener('click', () => {
+        //     FB.getLoginStatus(function (response) {
+        //         let request = new XMLHttpRequest();
+        //         request.open("POST", response.authResponse.userID, true);
+        //         request.send();
+        //         request.onload = function () {
+        //             console.log(request.responseText);
+        //         };
+        //     });
+        // });
+    }
+
+    handleContinue() {
+        document.getElementById('continue').addEventListener('click', () => {
+                if (document.getElementById('getEmail').value !== '') {
                     if (document.getElementById('getEmail').value === '' || !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(document.getElementById('getEmail').value)) {
                         alert(`Incorrect email address. Please try again.`)
                     } else {
@@ -73,101 +107,39 @@ class EventHandler {
                             }
                         });
                     }
-                });
-
-            } else {
-                FB.getLoginStatus(function (response) {
-                    if (response.status === 'connected') {
-                        this.user = JSON.parse(response);
-                        document.getElementById('create').style.display = 'none';
-                        document.getElementById('login').style.display = 'none';
-                        document.getElementById('result').style.display = 'none';
-                        document.getElementById('log').style.display = 'block';
-                        if (Object.prototype.toString.call(this.user) === '[object Object]') {
-                            document.getElementById('name').innerHTML = `${this.user.firstName} ${this.user.lastName}`;
-                        } else {
-                            document.getElementById('name').innerHTML = `${this.user[0].firstName} ${this.user[0].lastName}`;
-                        }
-                    }
-                });
-            }
-        };
-
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {
-                return;
-            }
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-        // FB.Event.subscribe('auth.login', (response) => {
-        //     let request = new XMLHttpRequest();
-        //     request.open("POST", response.authResponse.userID, true);
-        //     request.send();
-        //     request.onload = function () {
-        //         console.log(request.responseText);
-        //     };
-        // });
-        document.getElementById("fb-login-button").addEventListener('click', () => {
-            FB.getLoginStatus(function (response) {
-                let request = new XMLHttpRequest();
-                request.open("POST", response.authResponse.userID, true);
-                request.send();
-                request.onload = function () {
-                    console.log(request.responseText);
-                };
-            });
-        });
-    }
-
-    handleContinue() {
-        if (document.getElementById('getEmail').value !== '') {
-            document.getElementById('continue').addEventListener('click', () => {
-                if (document.getElementById('getEmail').value === '' || !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(document.getElementById('getEmail').value)) {
-                    alert(`Incorrect email address. Please try again.`)
                 } else {
-                    this.performAjax('XMLHttpRequest0', JSON.stringify([document.getElementById('getEmail').value, document.getElementById('password').value]), (response) => {
-                        if (response === 'false') {
-                            alert('You must provide your proper email address to continue.');
-                        } else {
-                            this.user = JSON.parse(response);
-                            document.getElementById('create').style.display = 'none';
-                            document.getElementById('login').style.display = 'none';
-                            document.getElementById('result').style.display = 'none';
-                            document.getElementById('log').style.display = 'block';
-                            if (Object.prototype.toString.call(this.user) === '[object Object]') {
-                                document.getElementById('name').innerHTML = `${this.user.firstName} ${this.user.lastName}`;
-                            } else {
-                                document.getElementById('name').innerHTML = `${this.user[0].firstName} ${this.user[0].lastName}`;
-                            }
-                            if (this.user.email == 'joe@latitude45.com') {
-                                document.getElementById('adminButton').style.display = 'block';
+                    FB.getLoginStatus(function (loginStatus) {
+                            if (loginStatus.status === 'connected') {
+                                this.performAjax('XMLHttpRequest0', JSON.stringify([loginStatus.authResponse.userID,
+                                '']), (response) => {
+                                    if (response === 'false') {
+                                        alert('You must provide your proper email address to continue.');
+                                    } else {
+                                        this.user = JSON.parse(response);
+                                        document.getElementById('create').style.display = 'none';
+                                        document.getElementById('login').style.display = 'none';
+                                        document.getElementById('result').style.display = 'none';
+                                        document.getElementById('log').style.display = 'block';
+                                        if (Object.prototype.toString.call(this.user) === '[object Object]') {
+                                            document.getElementById('name').innerHTML = `${this.user.firstName} ${this.user.lastName}`;
+                                        } else {
+                                            document.getElementById('name').innerHTML = `${this.user[0].firstName} ${this.user[0].lastName}`;
+                                        }
+                                        if (this.user.email == 'joe@latitude45.com') {
+                                            document.getElementById('adminButton').style.display = 'block';
+                                        }
+                                    }
+                                });
                             }
                         }
-                    });
+                    )
+                    ;
                 }
-            });
+            }
+        );
 
-        } else {
-            FB.getLoginStatus(function (response) {
-                if (response.status === 'connected') {
-                    this.user = JSON.parse(response);
-                    document.getElementById('create').style.display = 'none';
-                    document.getElementById('login').style.display = 'none';
-                    document.getElementById('result').style.display = 'none';
-                    document.getElementById('log').style.display = 'block';
-                    if (Object.prototype.toString.call(this.user) === '[object Object]') {
-                        document.getElementById('name').innerHTML = `${this.user.firstName} ${this.user.lastName}`;
-                    } else {
-                        document.getElementById('name').innerHTML = `${this.user[0].firstName} ${this.user[0].lastName}`;
-                    }
-                }
-            });
-        }
     }
+
 
     handleCreate() {
         document.getElementById('creator').addEventListener('click', () => {
