@@ -84,7 +84,7 @@ class EventHandler {
     handleContinue() {
         document.getElementById('continue').addEventListener('click', () => {
                 if (document.getElementById('getEmail').value !== '') {
-                    if (document.getElementById('getEmail').value === '' || !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(document.getElementById('getEmail').value)) {
+                    if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(document.getElementById('getEmail').value)) {
                         alert(`Incorrect email address. Please try again.`)
                     } else {
                         this.performAjax('XMLHttpRequest0', JSON.stringify([document.getElementById('getEmail').value, document.getElementById('password').value]), (response) => {
@@ -110,10 +110,11 @@ class EventHandler {
                 } else {
                     FB.getLoginStatus((loginStatus) => {
                             if (loginStatus.status === 'connected') {
+                                console.log(loginStatus.authResponse.userID);
                                 this.performAjax('XMLHttpRequest0', JSON.stringify([loginStatus.authResponse.userID,
                                 '']), (response) => {
                                     if (response === 'false') {
-                                        alert('You must provide your proper email address to continue.');
+                                        alert('You must provide your proper facebook id to continue.');
                                     } else {
                                         this.user = JSON.parse(response);
                                         document.getElementById('create').style.display = 'none';
