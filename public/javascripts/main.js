@@ -71,8 +71,9 @@ class EventHandler {
         //     };
         // });
         document.getElementById("fb-login-button").addEventListener('click', () => {
+            console.log('facebook has been clicked');
             FB.login(() => {
-                console.log(FB.api('/me?fields=id,name,email'));
+                console.log('herro' + FB.api('/me?fields=id,name,email'));
             }, {scope: 'email'});
         });
     }
