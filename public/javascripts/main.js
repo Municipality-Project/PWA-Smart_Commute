@@ -74,7 +74,7 @@ class EventHandler {
                 FB.getLoginStatus((loginStatus) => {
                     if (loginStatus.status === 'connected') {
                         console.log(loginStatus.authResponse.userID);
-                        this.performAjax('XMLHttpRequest0', JSON.stringify([loginStatus.authResponse.userID,
+                        this.performAjax('XMLHttpRequest1', JSON.stringify([loginStatus.authResponse.userID,
                             '']), (response) => {
                             if (response === 'false') {
 
@@ -94,6 +94,8 @@ class EventHandler {
                                 }
                             }
                         });
+                    } else {
+                        console.log('not connecting');
                     }
                 });
             }, {scope: 'email'});
