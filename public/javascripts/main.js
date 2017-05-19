@@ -69,16 +69,35 @@ class EventHandler {
         //         console.log(request.responseText);
         //     };
         // });
-        // document.getElementById("fb-login-button").addEventListener('click', () => {
-        //     FB.getLoginStatus(function (response) {
-        //         let request = new XMLHttpRequest();
-        //         request.open("POST", response.authResponse.userID, true);
-        //         request.send();
-        //         request.onload = function () {
-        //             console.log(request.responseText);
-        //         };
-        //     });
-        // });
+        document.getElementById("fb-login-button").addEventListener('click', () => {
+            FB.login(() => {
+                FB.getLoginStatus((loginStatus) => {
+                    if (loginStatus.status === 'connected') {
+                        console.log(loginStatus.authResponse.userID);
+                        this.performAjax('XMLHttpRequest0', JSON.stringify([loginStatus.authResponse.userID,
+                            '']), (response) => {
+                            if (response === 'false') {
+
+                            } else {
+                                this.user = JSON.parse(response);
+                                document.getElementById('create').style.display = 'none';
+                                document.getElementById('login').style.display = 'none';
+                                document.getElementById('result').style.display = 'none';
+                                document.getElementById('log').style.display = 'block';
+                                if (Object.prototype.toString.call(this.user) === '[object Object]') {
+                                    document.getElementById('name').innerHTML = `${this.user.firstName} ${this.user.lastName}`;
+                                } else {
+                                    document.getElementById('name').innerHTML = `${this.user[0].firstName} ${this.user[0].lastName}`;
+                                }
+                                if (this.user.email == 'joe@latitude45.com') {
+                                    document.getElementById('adminButton').style.display = 'block';
+                                }
+                            }
+                        });
+                    }
+                });
+            }, {scope: 'email'});
+        });
     }
 
     handleContinue() {
@@ -108,33 +127,6 @@ class EventHandler {
                         });
                     }
                 } else {
-                    FB.getLoginStatus((loginStatus) => {
-                            if (loginStatus.status === 'connected') {
-                                console.log(loginStatus.authResponse.userID);
-                                this.performAjax('XMLHttpRequest0', JSON.stringify([loginStatus.authResponse.userID,
-                                '']), (response) => {
-                                    if (response === 'false') {
-                                        alert('You must provide your proper facebook id to continue.');
-                                    } else {
-                                        this.user = JSON.parse(response);
-                                        document.getElementById('create').style.display = 'none';
-                                        document.getElementById('login').style.display = 'none';
-                                        document.getElementById('result').style.display = 'none';
-                                        document.getElementById('log').style.display = 'block';
-                                        if (Object.prototype.toString.call(this.user) === '[object Object]') {
-                                            document.getElementById('name').innerHTML = `${this.user.firstName} ${this.user.lastName}`;
-                                        } else {
-                                            document.getElementById('name').innerHTML = `${this.user[0].firstName} ${this.user[0].lastName}`;
-                                        }
-                                        if (this.user.email == 'joe@latitude45.com') {
-                                            document.getElementById('adminButton').style.display = 'block';
-                                        }
-                                    }
-                                });
-                            }
-                        }
-                    )
-                    ;
                 }
             }
         );
