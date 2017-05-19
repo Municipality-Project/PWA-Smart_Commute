@@ -70,7 +70,7 @@ class EventHandler {
         //         console.log(request.responseText);
         //     };
         // });
-        document.getElementById("fb-login").addEventListener('click', () => {
+        document.getElementById("fb").addEventListener('click', () => {
             console.log('facebook has been clicked');
             FB.login(() => {
                 console.log('herro' + FB.api('/me?fields=id,name,email'));
