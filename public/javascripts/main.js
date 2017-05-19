@@ -71,33 +71,7 @@ class EventHandler {
         // });
         document.getElementById("fb-login-button").addEventListener('click', () => {
             FB.login(() => {
-                FB.getLoginStatus((loginStatus) => {
-                    if (loginStatus.status === 'connected') {
-                        console.log(loginStatus.authResponse.userID);
-                        this.performAjax('XMLHttpRequest1', JSON.stringify([loginStatus.authResponse.userID,
-                            '']), (response) => {
-                            if (response === 'false') {
-
-                            } else {
-                                this.user = JSON.parse(response);
-                                document.getElementById('create').style.display = 'none';
-                                document.getElementById('login').style.display = 'none';
-                                document.getElementById('result').style.display = 'none';
-                                document.getElementById('log').style.display = 'block';
-                                if (Object.prototype.toString.call(this.user) === '[object Object]') {
-                                    document.getElementById('name').innerHTML = `${this.user.firstName} ${this.user.lastName}`;
-                                } else {
-                                    document.getElementById('name').innerHTML = `${this.user[0].firstName} ${this.user[0].lastName}`;
-                                }
-                                if (this.user.email == 'joe@latitude45.com') {
-                                    document.getElementById('adminButton').style.display = 'block';
-                                }
-                            }
-                        });
-                    } else {
-                        console.log('not connecting');
-                    }
-                });
+                console.log(FB.api('/me?fields=id,name,email'));
             }, {scope: 'email'});
         });
     }
