@@ -24,6 +24,7 @@ class main {
         document.getElementById('adminAccess').style.display = 'none';
         document.getElementById('returnAdmin').style.display = 'none';
         document.getElementById('login').style.display = 'block';
+        console.log('hi');
     }
 }
 
