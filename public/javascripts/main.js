@@ -75,7 +75,7 @@ class EventHandler {
             FB.login(() => {
               FB.api('/me', {fields: ['first_name', 'last_name', 'email']}, (userData) => {
                 console.log('response: ' + JSON.stringify(userData));
-                this.performAjax('XMLHttpRequest0', JSON.stringify([response.email, response.id]), (response) => {
+                this.performAjax('XMLHttpRequest0', JSON.stringify([userData.email, userData.id]), (response) => {
                   console.log('loggin in');
                   if (response === 'false') {
                     console.log('creating account')
