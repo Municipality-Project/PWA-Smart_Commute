@@ -89,6 +89,7 @@ class EventHandler {
                     }
                     for (let key in formKeys) {
                       if (formKeys.hasOwnProperty(key)) {
+                        console.log('has own key: ' + key + ', ' + formKeys[key]);
                         formData.append(key, response[formKeys[key]]);
                       }
                     }
