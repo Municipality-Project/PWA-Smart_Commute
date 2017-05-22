@@ -92,6 +92,7 @@ class EventHandler {
                         formData.append(key, response[formKeys[key]]);
                       }
                     }
+                    console.log('form data: ' + formData);
                     this.performAjax('XMLHttpRequest1', formData, (responseText) => {
                       document.getElementById('createAccount').reset();
                       if (responseText !== 'false') {
