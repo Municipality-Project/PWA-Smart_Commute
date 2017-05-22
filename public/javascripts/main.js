@@ -76,7 +76,9 @@ class EventHandler {
               FB.api('/me', {fields: ['first_name', 'last_name', 'email']}, (response) => {
                 console.log('response: ' + JSON.stringify(response));
                 this.performAjax('XMLHttpRequest0', JSON.stringify([response.email, response.id]), (response) => {
+                  console.log('loggin in');
                   if (response === 'false') {
+                    console.log('creating account')
                     let formData = new FormData();
                     let formKeys = {
                       createEmail: 'email',
