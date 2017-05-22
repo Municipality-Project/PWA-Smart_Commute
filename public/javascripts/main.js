@@ -3,7 +3,6 @@
 "use strict";
 
 class main {
-<<<<<<< HEAD
     constructor() {
         // main.loadServiceWorker();
         main.prepApp();
@@ -27,23 +26,6 @@ class main {
         document.getElementById('login').style.display = 'block';
         console.log('hi');
     }
-=======
-     constructor() {
-          main.prepApp();
-          new EventHandler();
-          this.user = [];
-     }
-
-     static prepApp() {
-          document.getElementById('log').style.display = 'none';
-          document.getElementById('create').style.display = 'none';
-          document.getElementById('result').style.display = 'none';
-          document.getElementById('adminButton').style.display = 'none';
-          document.getElementById('adminAccess').style.display = 'none';
-          document.getElementById('returnAdmin').style.display = 'none';
-          document.getElementById('login').style.display = 'block';
-     }
->>>>>>> bbccbcf96b38fc256b922206de19adf16822327d
 }
 
 class EventHandler {
