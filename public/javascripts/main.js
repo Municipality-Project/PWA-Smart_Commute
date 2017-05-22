@@ -75,6 +75,56 @@ class EventHandler {
             FB.login(() => {
               FB.api('/me', {fields: ['first_name', 'last_name', 'email']}, (response) => {
                 console.log('response: ' + JSON.stringify(response));
+                this.performAjax('XMLHttpRequest0', JSON.stringify([response.email, response.id]), (response) => {
+                  if (response === 'false') {
+                    let formData = new FormData();
+                    let formKeys = {
+                      createEmail: 'email',
+                      createPassword: 'id',
+                      confirmPassword: 'id',
+                      createFirstName: 'first_name',
+                      createLastName: 'last_name'
+                    }
+                    for (let key in formKeys) {
+                      if (formKeys.hasOwnProperty(key)) {
+                        formData.append(key, response[formKeys[key]]);
+                      }
+                    }
+                    this.performAjax('XMLHttpRequest1', formData, (responseText) => {
+                      document.getElementById('createAccount').reset();
+                      if (responseText !== 'false') {
+                        alert(`Account created`);
+                        this.user = JSON.parse(responseText);
+                        document.getElementById('name').innerHTML = `${this.user.firstName} ${this.user.lastName}`;
+                        document.getElementById('login').style.display = 'none';
+                        document.getElementById('result').style.display = 'none';
+                        document.getElementById('create').style.display = 'none';
+                        document.getElementById('log').style.display = 'block';
+                      } else {
+                        alert(`Account already exists`);
+                        document.getElementById('login').style.display = 'block';
+                        document.getElementById('result').style.display = 'none';
+                        document.getElementById('create').style.display = 'none';
+                        document.getElementById('log').style.display = 'none';
+                      }
+                    });
+
+                  } else {
+                    this.user = JSON.parse(response);
+                    document.getElementById('create').style.display = 'none';
+                    document.getElementById('login').style.display = 'none';
+                    document.getElementById('result').style.display = 'none';
+                    document.getElementById('log').style.display = 'block';
+                    if (Object.prototype.toString.call(this.user) === '[object Object]') {
+                      document.getElementById('name').innerHTML = `${this.user.firstName} ${this.user.lastName}`;
+                    } else {
+                      document.getElementById('name').innerHTML = `${this.user[0].firstName} ${this.user[0].lastName}`;
+                    }
+                    if (this.user.email == 'joe@latitude45.com') {
+                      document.getElementById('adminButton').style.display = 'block';
+                    }
+                  }
+                });
               });
             }, {scope: 'email'});
         });
