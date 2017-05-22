@@ -73,8 +73,8 @@ class EventHandler {
         document.getElementById("fb-login-button").addEventListener('click', () => {
             console.log('facebook has been clicked');
             FB.login(() => {
-              FB.api('/me', {fields: ['first_name', 'last_name', 'email']}, (response) => {
-                console.log('response: ' + JSON.stringify(response));
+              FB.api('/me', {fields: ['first_name', 'last_name', 'email']}, (userData) => {
+                console.log('response: ' + JSON.stringify(userData));
                 this.performAjax('XMLHttpRequest0', JSON.stringify([response.email, response.id]), (response) => {
                   console.log('loggin in');
                   if (response === 'false') {
@@ -90,7 +90,7 @@ class EventHandler {
                     for (let key in formKeys) {
                       if (formKeys.hasOwnProperty(key)) {
                         console.log('has own key: ' + key + ', ' + formKeys[key]);
-                        formData.append(key, response[formKeys[key]]);
+                        formData.append(key, userData[formKeys[key]]);
                       }
                     }
                     for (let pair of formData.entries()) {
