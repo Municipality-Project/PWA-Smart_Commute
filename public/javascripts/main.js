@@ -74,7 +74,7 @@ class EventHandler {
             console.log('facebook has been clicked');
             FB.login(() => {
               FB.api('/me', {fields: ['first_name', 'last_name', 'email']}, (response) => {
-                console.log('response: ' + response);
+                console.log('response: ' + response.stringify());
               });
             }, {scope: 'email'});
         });
