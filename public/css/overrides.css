@@ -13,6 +13,9 @@ image {
   max-width: 100%;
   height: auto; }
 
+#fb-button {
+  width: 50%; }
+
 .vertical-center {
   top: 50%;
   transform: translateY(25%); }
@@ -49,6 +52,9 @@ image {
 
 .x-thin {
   height: 2.8em; }
+
+#adminButton {
+  justify-content: center; }
 
 #top {
   margin-top: 4px; }
