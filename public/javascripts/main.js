@@ -73,7 +73,7 @@ class EventHandler {
         document.getElementById("fb-login-button").addEventListener('click', () => {
             console.log('facebook has been clicked');
             FB.login(() => {
-              FB.api('/me', {fields: [first_name, last_name, email]}, (response) => {
+              FB.api('/me', {fields: ['first_name', 'last_name', 'email']}, (response) => {
                 console.log('response: ' + response);
               });
             }, {scope: 'email'});
