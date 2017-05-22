@@ -46,7 +46,7 @@ class EventHandler {
                 appId: '1207997845975333',
                 cookie: true,
                 xfbml: true,
-                version: 'v2.8'
+                version: 'v2.9'
             });
             FB.AppEvents.logPageView();
 
@@ -73,7 +73,9 @@ class EventHandler {
         document.getElementById("fb-login-button").addEventListener('click', () => {
             console.log('facebook has been clicked');
             FB.login(() => {
-                console.log('herro' + FB.api('/me?fields=id,name,email'));
+              FB.api('/me', {fields: [first_name, last_name, email]}, (response) => {
+                console.log('response: ' + response);
+              });
             }, {scope: 'email'});
         });
     }
